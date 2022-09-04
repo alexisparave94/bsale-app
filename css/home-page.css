@@ -21,7 +21,41 @@ header {
 
 .categories-menu {
   grid-column: 1 / 2;
+  margin-top: 3rem;
 }
+
+.menu-title {
+  padding-bottom: .2rem;
+  border-bottom: .15rem solid #F2F2F2;
+}
+
+.categories-menu h2 {
+  margin: .5rem 0;
+  padding: 1rem 1rem;
+  border-left: .2rem solid #757575;
+}
+
+.list-categories {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+}
+
+.category-li {
+  padding: .8rem 1rem;
+}
+
+.category-li:hover {
+  background-color: #F2F2F2;
+  cursor: pointer;
+}
+
+.category-link {
+  text-transform: uppercase;
+  color: #757575;
+}
+
+/* Product container */
 
 .products-container {
   margin: 3rem auto;
@@ -103,3 +137,4 @@ header {
   background-color: #9F9F9F;
   cursor: pointer;
 }
+
