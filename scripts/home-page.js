@@ -9,6 +9,22 @@ function render(){
     </header>
     <div class="main-container">
       <aside class="categories-menu">
+        <div class="menu-title">
+          <h2>CATEGORIES</h2>
+        </div>
+        <div class="categories-container">
+          <ul class="list-categories">
+            ${ STORE.categories.map( cat => (
+              `
+                <li class="category-li">
+                  <a href="#" class="category-link">
+                    ${ cat.name }
+                  </a>
+                </li>
+              `
+            )).join("")}
+          </ul>
+        </div>
       </aside>
       <div class="products-container">
         ${ STORE.products.map( product => (
