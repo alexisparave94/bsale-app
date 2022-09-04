@@ -1,25 +1,12 @@
 import CategoriesMenu from "./components/categories-menu.js";
-import DOMHandler from "./dom-handler.js";
-import { searchProducts } from "./services/products-services.js";
+import Header from "./components/header.js";
 import STORE from "./store.js";
 
 function render(){
   const current_category = STORE.current_category
   const search = STORE.search
   return `
-    <header>
-      <div class="header-container">
-        <h1>Bsale</h1>
-        <div class="search-container">
-          <form class="search-form">
-            <input class="search-input" type="text" placeholder="Nombre del producto" name="search">
-            <button class="search-button" type="submit">
-              <i class="ri-search-line"></i>
-            </button>
-          </form>
-        </div>
-      </div>
-    </header>
+    ${Header}
     <div class="main-container">
       ${CategoriesMenu}
       <div class="products-container">
@@ -82,27 +69,13 @@ function renderProducts(product){
   `
 }
 
-function listenSearch(){
-  const searchForm = document.querySelector(".search-form")
-  searchForm.addEventListener("submit",async (e) => {
-    e.preventDefault()
-    const { search } = e.target.elements
-    STORE.query = search.value
-    STORE.filter_products = await searchProducts(search.value)
-    STORE.current_category = -1
-    STORE.search = true
-    DOMHandler.reload()
-    console.log(STORE.filter_products)
-  })
-}
-
 const HomePage = {
   toString() {
     return render()
   },
   addListeners() {
     CategoriesMenu.addListeners(),
-    listenSearch()
+    Header.addListeners()
   }
 }
 
