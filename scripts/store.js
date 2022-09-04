@@ -11,6 +11,8 @@ async function fetchCategories(){
 const STORE = {
   products: [],
   categories: [],
+  filter_products: [],
+  current_category: 0,
   fetchProducts,
   fetchCategories
 }
