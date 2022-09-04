@@ -1,14 +1,23 @@
 import DOMHandler from "./dom-handler.js";
-import { filterProducts } from "./services/products-services.js";
+import { filterProducts, searchProducts } from "./services/products-services.js";
 import STORE from "./store.js";
 
 function render(){
   const current_category = STORE.current_category
+  const search = STORE.search
   return `
     <header>
       <div class="header-container">
         <h1>Bsale</h1>
-      <div>
+        <div class="search-container">
+          <form class="search-form">
+            <input class="search-input" type="text" placeholder="Nombre del producto" name="search">
+            <button class="search-button" type="submit">
+              <i class="ri-search-line"></i>
+            </button>
+          </form>
+        </div>
+      </div>
     </header>
     <div class="main-container">
       <aside class="categories-menu">
@@ -35,7 +44,15 @@ function render(){
         </div>
       </aside>
       <div class="products-container">
-        ${ current_category ? STORE.filter_products.map(renderProducts).join("") : STORE.products.map(renderProducts).join("") }
+        ${ search && STORE.filter_products.length == 0 ? 
+          `
+            <p class="message">No se encontraron productos para "${STORE.query}"
+            </p>
+          `
+          :
+          ""
+        }
+        ${ search ? STORE.filter_products.map(renderProducts).join("") : current_category ? STORE.filter_products.map(renderProducts).join("") : STORE.products.map(renderProducts).join("") }
       </div>
     </div>
   `;
@@ -77,7 +94,10 @@ function renderProducts(product){
         }
       </div>
       <div class="card-button">
-        <button class="button" type=""> Añadir </button>
+        <button class="add-button" type=""> 
+          Añadir 
+          <i class="ri-shopping-cart-2-line"></i>
+        </button>
       </div>
     </div>
   `
@@ -89,7 +109,22 @@ function listenLinkCategory(){
     e.preventDefault()
     STORE.current_category = Number(e.target.dataset.id)
     STORE.filter_products = await filterProducts(STORE.current_category)
+    STORE.search = false
     DOMHandler.reload()
+  })
+}
+
+function listenSearch(){
+  const searchForm = document.querySelector(".search-form")
+  searchForm.addEventListener("submit",async (e) => {
+    e.preventDefault()
+    const { search } = e.target.elements
+    STORE.query = search.value
+    STORE.filter_products = await searchProducts(search.value)
+    STORE.current_category = -1
+    STORE.search = true
+    DOMHandler.reload()
+    console.log(STORE.filter_products)
   })
 }
 
@@ -98,7 +133,8 @@ const HomePage = {
     return render()
   },
   addListeners() {
-    listenLinkCategory()
+    listenLinkCategory(),
+    listenSearch()
   }
 }
 

@@ -13,6 +13,8 @@ const STORE = {
   categories: [],
   filter_products: [],
   current_category: 0,
+  search: false,
+  query: "",
   fetchProducts,
   fetchCategories
 }
