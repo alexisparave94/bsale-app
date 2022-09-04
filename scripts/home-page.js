@@ -45,7 +45,18 @@ function renderProducts(product){
   return `
     <div class="product-card">
       <div class="card-image">
-        <img src="${product.url_image ? product.url_image : ""}">
+        ${product.url_image ? 
+          `
+            <img src="${product.url_image}">
+          `
+          :
+          `
+            <div class="no-image">
+              <p>NO HAY IMAGEN DISPONIBLE</p>
+            </div>
+          `
+        }
+        <img src="">
       </div>
       <div class="card-content">
         <h3>${product.name}</h3>
