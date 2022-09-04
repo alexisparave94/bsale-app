@@ -1,4 +1,7 @@
-const BASE_URI = "http://localhost:3000"
+// Localhost
+// const BASE_URI = "http://localhost:3000"
+// Heroku
+const BASE_URI = "https:///bsale-client-api.herokuapp.com"
 
 export default async function apiBSaleClient(endpoint) {
   const response = await fetch(`${BASE_URI}/${endpoint}`);
