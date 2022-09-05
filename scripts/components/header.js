@@ -26,10 +26,17 @@ function listenSearch(){
     e.preventDefault()
     const { search } = e.target.elements
     STORE.query = search.value
-    STORE.filter_products = await searchProducts(search.value)
-    STORE.current_category = -1
-    STORE.search = true
-    DOMHandler.reload()
+    try {
+      STORE.filter_products = await searchProducts(search.value)
+      STORE.current_category = -1
+      STORE.search = true
+      STORE.errors = null
+      DOMHandler.reload()
+    } catch(error) {
+      console.log(error)
+      STORE.errors = error.message
+      DOMHandler.reload()
+    }
   })
 }
 
