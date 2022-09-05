@@ -36,9 +36,16 @@ function listenLinkCategory(){
   linkCategory.addEventListener("click", async (e) => {
     e.preventDefault()
     STORE.current_category = Number(e.target.dataset.id)
-    STORE.filter_products = await filterProducts(STORE.current_category)
-    STORE.search = false
-    DOMHandler.reload()
+    try {
+      STORE.filter_products = await filterProducts(STORE.current_category)
+      STORE.search = false
+      STORE.errors = null
+      DOMHandler.reload()
+    } catch(error) {
+      console.log(error)
+      STORE.errors = error.message
+      DOMHandler.reload()
+    }
   })
 }
 
