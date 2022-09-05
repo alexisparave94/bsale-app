@@ -7,7 +7,7 @@ function render(){
   return ` 
     <aside class="categories-menu">
       <div class="menu-title">
-        <h2>CATEGORIES</h2>
+        <h2>CATEGORIAS</h2>
       </div>
       <div class="categories-container">
         <ul class="list-categories">
