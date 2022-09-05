@@ -10,6 +10,7 @@ function render(){
     <div class="main-container">
       ${CategoriesMenu}
       <div class="products-container">
+        ${ STORE.errors ? `<p class="error">${STORE.errors}</p>` : "" }
         ${ search && STORE.filter_products.length == 0 ? 
           `
             <p class="message">No se encontraron productos para "${STORE.query}"

@@ -15,6 +15,7 @@ const STORE = {
   current_category: 0,
   search: false,
   query: "",
+  errors: null,
   fetchProducts,
   fetchCategories
 }
