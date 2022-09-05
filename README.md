@@ -14,6 +14,8 @@ Each card includes this information of the product:
 - Price with a discount (if it has a discount)
 - Add button
 
+Note: Prices are considered in Peruvian soles.
+
 ![img1](images-readme/image1.png)
 
 On the left side there is a menu with all categories of the products, by default is selected the menu "Todas las categorias", you can select what category of products you want to see by clicking on the category name.
