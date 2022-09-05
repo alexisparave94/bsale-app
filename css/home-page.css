@@ -24,6 +24,13 @@
   padding: 3rem 0;
 }
 
+.error {
+  font-size: 1.3rem;
+  color: #C51C3B;;
+  padding: 3rem 0;
+
+}
+
 .product-card {
   border: 0px solid black;
   width: 16rem;
